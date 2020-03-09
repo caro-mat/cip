@@ -2,25 +2,25 @@
 # Abgabe per 03.04.2020 11:30 Uhr
 zip File mit:
 
-# Data 
+### Data 
 Dataset USA
 Dataset Europa
 Optional: Dataset Rankings Europa
-# Python: 
+### Python: 
 crawler für Dataset Europa
 pandas für Dataset Europa
 Optional: Crawler für Dataset Rankings Europa
-# Tableau
+### Tableau
 Tableau Prep File
 Tableau File
 
-# Projektbeschreibung
+### Projektbeschreibung
 Projektplan
 Projektbeschreibung 
 Video der Präsentation + evtl. Powerpoint Präsentation
 Beschreibung wo das Projekt auf den virtuellen Maschinen abgelegt ist
 
-# Arbeitszeiterfassung
+### Arbeitszeiterfassung
 1 Tabelle pro Person 
 
 # Inhalt der Projektbeschreibung
