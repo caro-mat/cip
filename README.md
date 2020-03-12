@@ -3,9 +3,9 @@
 zip File mit:
 
 ### Data 
-Dataset USA
-Dataset Europa
-Optional: Dataset Rankings Europa
+* Dataset USA
+* Dataset Europa
+* Optional: Dataset Rankings Europa
 ### Python: 
 crawler für Dataset Europa
 pandas für Dataset Europa
