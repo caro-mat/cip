@@ -5,7 +5,7 @@ zip File mit:
 ### Data 
 * Dataset Master
 * Dataset Bachelor
-* Optional: Dataset Rankings 
+* Dataset Rankings 
 ### Python: 
 * crawler für Dataset Master&Bachelor
 * Crawler für Dataset Rankings Europa
