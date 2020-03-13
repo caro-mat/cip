@@ -1,5 +1,6 @@
 import requests
 import csv
+import pandas as pd
 from bs4 import BeautifulSoup
 from bs4 import ResultSet
 
@@ -10,6 +11,7 @@ class Crawler:
         self.__path = path
         self.__html = None
         self.__content_table = []
+        self.__content_data_frame = []
 
     def __get_path(self):
         return self.__path
@@ -26,10 +28,17 @@ class Crawler:
     def __get_content_table(self):
         return self.__content_table
 
+    def __get_content_data_frame(self):
+        return self.__content_data_frame
+
+    def __set_content_data_frame(self, content_data_frame):
+        self.__content_data_frame = content_data_frame
+
     path = property(__get_path, __set_path)
     raw_data = property(__get_raw_data)
     html = property(__get_html)
     content_table = property(__get_content_table)
+    content_data_frame = property(__get_content_data_frame, __set_content_data_frame)
 
     def __request_data(self):
         request = RequestProxy(self.__path)
@@ -87,59 +96,59 @@ class CrawlDataScienceBachelor(Crawler):
             try:
                 title = item.find('div', class_='title').h4.text
             except Exception as error:
-                title = None
+                title = ''
 
             try:
                 school = item.find('div', class_='school').text
             except Exception as error:
-                school = None
+                school = ''
 
             try:
                 location = item.find('span', class_='location').text
-                location = location.replace('\n', '').replace(' ', '')
             except Exception as error:
-                location = None
+                location = ''
 
             try:
                 description = item.find('p', class_='desc').text
-                description = description.replace('\n', ' ')
             except Exception as error:
-                description = None
+                description = ''
 
             try:
                 degree = item.find('div', class_='degree').find('div', class_='label-item').text
-                degree = degree.replace('\n', '').replace(' ', '')
             except Exception as error:
-                degree = None
+                degree = ''
 
             try:
                 pace = item.find('div', class_='pace').find('div', class_='label-item').text
             except Exception as error:
-                pace = None
+                pace = ''
 
             try:
                 duration = item.find('div', class_='duration').find('div', class_='label-item').text
             except Exception as error:
-                duration = None
+                duration = ''
 
             try:
                 languages = item.find('div', class_='languages').find('div', class_='label-item').text
-                languages = languages.replace('\n', '').replace(' ', '')
             except Exception as error:
-                languages = None
+                languages = ''
 
             try:
                 start = item.find('div', class_='start').find('div', class_='label-item').text
             except Exception as error:
-                start = None
+                start = ''
 
             try:
-                based = item.find('div', class_='pace').find('div', class_='label-item').text
+                based = item.find('div', class_='based').find('div', class_='label-item').text
             except Exception as error:
-                based = None
+                based = ''
 
             content_element = [title, school, location, description, degree, pace, duration, languages, start, based]
             self.content_table.append(content_element)
+
+        self.content_data_frame = pd.DataFrame(self.content_table)
+        self.content_data_frame.columns = \
+            ['title', 'school', 'location', 'description', 'degree', 'pace', 'duration','languages', 'start', 'based']
 
 
 class CrawlDataScienceMaster(Crawler):
@@ -189,59 +198,60 @@ class CrawlDataScienceMaster(Crawler):
             try:
                 title = item.find('div', class_='title').h4.text
             except Exception as error:
-                title = None
+                title = ''
 
             try:
                 school = item.find('div', class_='school').text
             except Exception as error:
-                school = None
+                school = ''
 
             try:
                 location = item.find('span', class_='location').text
-                location = location.replace('\n', '').replace(' ', '')
             except Exception as error:
-                location = None
+                location = ''
 
             try:
                 description = item.find('p', class_='desc').text
-                description = description.replace('\n', ' ')
             except Exception as error:
-                description = None
+                description = ''
 
             try:
                 degree = item.find('div', class_='degree').find('div', class_='label-item').text
-                degree = degree.replace('\n', '').replace(' ', '')
             except Exception as error:
-                degree = None
+                degree = ''
 
             try:
                 pace = item.find('div', class_='pace').find('div', class_='label-item').text
             except Exception as error:
-                pace = None
+                pace = ''
 
             try:
                 duration = item.find('div', class_='duration').find('div', class_='label-item').text
             except Exception as error:
-                duration = None
+                duration = ''
 
             try:
                 languages = item.find('div', class_='languages').find('div', class_='label-item').text
-                languages = languages.replace('\n', '').replace(' ', '')
             except Exception as error:
-                languages = None
+                languages = ''
 
             try:
                 start = item.find('div', class_='start').find('div', class_='label-item').text
             except Exception as error:
-                start = None
+                start = ''
 
             try:
-                based = item.find('div', class_='pace').find('div', class_='label-item').text
+                based = item.find('div', class_='based').find('div', class_='label-item').text
             except Exception as error:
-                based = None
+                based = ''
 
             content_element = [title, school, location, description, degree, pace, duration, languages, start, based]
             self.content_table.append(content_element)
+
+        self.content_data_frame = pd.DataFrame(self.content_table)
+        self.content_data_frame.columns = \
+            ['title','school','location','description','degree','pace','duration','languages','start','based']
+
 
 
 class RequestProxy:
@@ -263,7 +273,27 @@ class RequestProxy:
 
 
 class Cleanser:
-    pass
+
+    def __init__(self):
+        pass
+
+    def cleanse_data(self, content_data_frame):
+
+        # Zeilenschaltung und Leerzeichen aus location entfernen
+        test = content_data_frame['location'][1]
+        content_data_frame['location'] = content_data_frame['location'].apply(lambda x: x.replace('\n', ''))
+        content_data_frame['location'] = content_data_frame['location'].apply(lambda x: x.replace(' ', ''))
+
+        # Zeilenschaltung aus description entfernen
+        content_data_frame['description'] = content_data_frame['description'].apply(lambda x: x.replace('\n', ''))
+
+        # Zeilenschaltung und Leerzeichen aus degree entfernen
+        content_data_frame['degree'] = content_data_frame['degree'].apply(lambda x: x.replace('\n', ''))
+        content_data_frame['degree'] = content_data_frame['degree'].apply(lambda x: x.replace(' ', ''))
+
+        # Zeilenschaltung und Leerzeichen aus languages entfernen
+        content_data_frame['languages'] = content_data_frame['languages'].apply(lambda x: x.replace('\n', ''))
+        content_data_frame['languages'] = content_data_frame['languages'].apply(lambda x: x.replace(' ', ''))
 
 
 class Export:
@@ -277,8 +307,8 @@ class Export:
         full_path = self.__path + self.__file_name
         with open(full_path, 'w', encoding='utf-8', newline='') as file:
 
-            writer = csv.writer(file, quoting=csv.QUOTE_ALL)
-            writer.writerows(content)
+            export = content.to_csv(quoting=csv.QUOTE_NONNUMERIC, index=False, encoding='utf-8')
+            file.write(export)
 
 
 def main():
@@ -287,15 +317,19 @@ def main():
     crawler1 = CrawlDataScienceMaster('https://www.masterstudies.com/Masters-Degree/Data-Science/')
     crawler1.crawl()
     crawler1.extract_features()
+    cleanser1 = Cleanser()
+    cleanser1.cleanse_data(crawler1.content_data_frame)
     export1 = Export('', 'test_master.csv')
-    export1.export_to_file(crawler1.content_table)
+    export1.export_to_file(crawler1.content_data_frame)
 
     # Bachelor
     crawler2 = CrawlDataScienceMaster('https://www.bachelorstudies.com/Bachelor/Data-Science/')
     crawler2.crawl()
     crawler2.extract_features()
+    cleanser1 = Cleanser()
+    cleanser1.cleanse_data(crawler2.content_data_frame)
     export2 = Export('', 'test_bachelor.csv')
-    export2.export_to_file(crawler2.content_table)
+    export2.export_to_file(crawler2.content_data_frame)
 
 
 if __name__ == '__main__':
