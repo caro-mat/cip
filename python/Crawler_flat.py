@@ -57,6 +57,9 @@ def collect_items(initial_path):
 
 
 def extract_features(items):
+
+    content_table = []
+
     for item in items:
         try:
             title = item.find('div', class_='title').h4.text
@@ -111,7 +114,7 @@ def extract_features(items):
         content_element = [title, school, location, description, degree, pace, duration, languages, start, based]
         content_table.append(content_element)
 
-    content_data_frame = pd.DataFrame(self.content_table)
+    content_data_frame = pd.DataFrame(content_table)
     content_data_frame.columns = \
         ['title', 'school', 'location', 'description', 'degree', 'pace', 'duration', 'languages', 'start', 'based']
     return content_data_frame
