@@ -7,7 +7,7 @@ from bs4 import ResultSet
 
 def send_request(path):
     response = requests.get(path)
-    if self.__response.status_code != 200:
+    if response.status_code != 200:
         print("Request failed " + path)
     else:
         print("Request successful " + path)
