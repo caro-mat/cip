@@ -1,30 +1,46 @@
-from typing import List, Any
-
 import requests
 import csv
 import pandas as pd
 from bs4 import BeautifulSoup
-from bs4 import ResultSet
-
+import time
 
 def send_request(path):
     response = requests.get(path)
     if response.status_code != 200:
         print("Request failed ")
     else:
-        print("Request successful ")
+        print("Request successful "+path)
         return response
 
 def collect_items(initial_path):
-
     path = initial_path
-    raw_data = send_request(path)
-    html = BeautifulSoup(raw_data.content, 'html.parser')
-    return html
+    items = []
+    eof = False
 
-def extract_features(html):
+    # Daten einlesen
+    while not eof:
+        time.sleep(0.1)
+        raw_data = send_request(path)
+        html = BeautifulSoup(raw_data.content, 'html.parser')
+
+        # Solange loopen, bis alle Seiten gecrawlt sind
+        # List-Items lesen
+
+        page_items = html.select("tr", class_=["odd", "even"])
+        items += page_items
+
+        # Links lesen
+        pagination = html.select_one(".pager-next a", href=True)
+        if not pagination:
+            eof = True
+        else:
+            link = pagination["href"].split("?")[1]
+            path = initial_path + "?" + link
+
+    return items
+
+def extract_features(items):
     schools = []
-    items = html.select("tr", class_=["odd", "even"])
 
     for item in items:
         try:
@@ -67,12 +83,10 @@ def extract_features(html):
             title = ''
 
 
-
     content_data_frame = pd.DataFrame(schools)
     content_data_frame.columns = \
         ["name", "rank_overall", "rank_presence", "rank_impact", "rank_open", "rank_excellence"]
     return content_data_frame
-
 
 def export_to_file(data_frame, path, file_name):
 
@@ -83,9 +97,10 @@ def export_to_file(data_frame, path, file_name):
 
 def main():
 
-    html = collect_items("http://www.webometrics.info/en/world")
-    content_data_frame = extract_features(html)
-    export_to_file(content_data_frame, '../data/', 'test_ranking.csv')
+    items = collect_items("http://www.webometrics.info/en/world")
+    content_data_frame = extract_features(items)
+    export_to_file(content_data_frame, '../data/', 'school_ranking.csv')
+
 
 if __name__ == '__main__':
     main()
