@@ -1,3 +1,5 @@
+from typing import List, Any
+
 import requests
 import csv
 import pandas as pd
@@ -22,24 +24,53 @@ def collect_items(initial_path):
 
 def extract_features(html):
     schools = []
-    for element in html.select("tr",class_=["odd", "even"]):
-        center = element.select("center")
-        rank = []
-        for i in center:
-            rank.append(i.text)
-        if rank:
-            rank_overall = rank[0]
-            rank_presence = rank[2]
-            rank_impact = rank[3]
-            rank_open = rank[4]
-            rank_excellence = rank[5]
+    items = html.select("tr", class_=["odd", "even"])
 
-            school = [rank_overall, rank_presence, rank_impact, rank_open, rank_excellence]
-            schools.append(school)
+    for item in items:
+        try:
+            name = item.find("a").text
+        except Exception as error:
+            name = ""
+
+        try:
+            rank_overall = item.select("center")[0].text
+        except Exception as error:
+            rank_overall = ""
+
+        try:
+            rank_presence = item.select("center")[2].text
+        except Exception as error:
+            rank_presence = ""
+
+        try:
+            rank_impact = item.select("center")[3].text
+        except Exception as error:
+            rank_impact = ""
+
+        try:
+            rank_open = item.select("center")[4].text
+        except Exception as error:
+            rank_open = ""
+
+        try:
+            rank_excellence = item.select("center")[5].text
+        except Exception as error:
+            rank_excellence = ""
+
+        school = [name, rank_overall, rank_presence, rank_impact, rank_open, rank_excellence]
+        schools.append(school)
+
+    for item in items:
+        try:
+            title = item.find('div', class_='title').h4.text
+        except Exception as error:
+            title = ''
+
+
 
     content_data_frame = pd.DataFrame(schools)
     content_data_frame.columns = \
-        ["rank_overall", "rank_presence", "rank_impact", "rank_open", "rank_excellence"]
+        ["name", "rank_overall", "rank_presence", "rank_impact", "rank_open", "rank_excellence"]
     return content_data_frame
 
 
@@ -54,7 +85,7 @@ def main():
 
     html = collect_items("http://www.webometrics.info/en/world")
     content_data_frame = extract_features(html)
-    export_to_file(content_data_frame, '../data/', 'test_ranking.csv') # Hier nach belieben den Pfad noch ändern
+    export_to_file(content_data_frame, '../data/', 'test_ranking.csv')
 
 if __name__ == '__main__':
     main()
