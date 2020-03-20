@@ -2,10 +2,12 @@ import requests
 import csv
 import pandas as pd
 from bs4 import BeautifulSoup
-from bs4 import ResultSet
 import time
 
 def send_request(path):
+    '''Ruft den angegebenen Pfad auf und ruft den html Code ab.
+    Gibt aus ob die Anfrage erfolgreich war oder nicht'''
+
     response = requests.get(path)
     if response.status_code != 200:
         print("Request failed " + path)
@@ -14,9 +16,12 @@ def send_request(path):
         return response
 
 def collect_items(initial_path):
+    '''Ruft über die send_request Funktion den html Code ab.
+    Geht durch alle Seiten die unsere Daten beinhaltet.
+    Transformiert den html Code mit Beautifulsoup.'''
 
     path = initial_path
-    items = ResultSet('')
+    items = []
     eof = False
 
     # Daten der Master Studiengänge lesen
@@ -56,6 +61,8 @@ def collect_items(initial_path):
     return items
 
 def extract_features(items):
+    '''Extrahiert die einzelnen Datenfelder aus dem html Code.Speichert pro Element alles in einer Liste.
+    Führt alle Elementlisten zu einer Liste zusammen. Generiert ein Pandas Dataframe'''
 
     content_table = []
 
@@ -119,9 +126,10 @@ def extract_features(items):
     return content_data_frame
 
 def cleanse_data(data_frame):
+    '''Cleant die Daten mit Pandas, entfernt Leerschläge und Zeilenumbrüche'''
 
     # Zeilenschaltung und Leerzeichen aus location entfernen
-    test = data_frame['location'][1]
+    # test = data_frame['location'][1]
     data_frame['location'] = data_frame['location'].apply(lambda x: x.replace('\n', ''))
     data_frame['location'] = data_frame['location'].apply(lambda x: x.replace(' ', ''))
 
@@ -137,6 +145,7 @@ def cleanse_data(data_frame):
     data_frame['languages'] = data_frame['languages'].apply(lambda x: x.replace(' ', ''))
 
 def export_to_file(data_frame, path, file_name):
+    '''Exportiert das Dataframe als csv file'''
 
     full_path = path + file_name
     with open(full_path, 'w', encoding='utf-8', newline='') as file:
@@ -144,6 +153,8 @@ def export_to_file(data_frame, path, file_name):
         file.write(export)
 
 def main():
+    ''' Sammelt alle Daten. Extrahiert die notwendigen Elemente und speichert in einem Dataframe.
+    Reinigt das Dataframe. Exportiert die Daten'''
 
     # Master
     items = collect_items('https://www.masterstudies.com/Masters-Degree/Data-Science/')

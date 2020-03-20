@@ -23,12 +23,6 @@ def collect_items(initial_path):
         raw_data = send_request(path)
         html = BeautifulSoup(raw_data.content, 'html.parser')
 
-        # Solange loopen, bis alle Seiten gecrawlt sind
-        # List-Items lesen
-
-        page_items = html.select("tr", class_=["odd", "even"])
-        items += page_items
-
         # Links lesen
         pagination = html.select_one(".pager-next a", href=True)
         if not pagination:
@@ -37,6 +31,11 @@ def collect_items(initial_path):
             link = pagination["href"].split("?")[1]
             path = initial_path + "?" + link
 
+        # Solange loopen, bis alle Seiten gecrawlt sind
+        # List-Items lesen
+
+        page_items = html.select("tr", class_=["odd", "even"])
+        items += page_items
     return items
 
 def extract_features(items):
