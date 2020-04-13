@@ -1,0 +1,387 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20201.20.0326.1623                               -->
+<workbook original-version='18.1' source-build='2020.1.2 (20201.20.0326.1623)' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <_.fcp.MarkAnimation.true...MarkAnimation />
+    <SheetIdentifierTracking />
+    <WindowsPersistSimpleIdentifiers />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='Extrakt Ausgabe_Veränderung' inline='true' name='federated.0nky8yw0crj2wd1akr7qw1a1e4av' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='Ausgabe_Veränderung' name='hyper.1kklfct0x3k2da13vw3640il7jlu'>
+            <connection authentication='auth-none' author-locale='de_DE' class='hyper' db-format='dataengine' dbname='C:/home/Jonas/CIP Project New/cip-master/tableau prep/Veränderungsdatenset/Ausgabe/Veränderungsdatenset_20200409.tde' default-settings='yes' port='0' sslmode='' username='tableau_internal_user' />
+          </named-connection>
+        </named-connections>
+        <relation connection='hyper.1kklfct0x3k2da13vw3640il7jlu' name='Extract' table='[Extract].[Extract]' type='table' />
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>Institution Status</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Institution Status]</local-name>
+            <parent-name>[Extract]</parent-name>
+            <remote-alias>Institution Status</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <approx-count>2</approx-count>
+            <contains-null>false</contains-null>
+            <collation flag='0' name='binary' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Institution</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Institution]</local-name>
+            <parent-name>[Extract]</parent-name>
+            <remote-alias>Institution</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <approx-count>12</approx-count>
+            <contains-null>false</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Studiengang</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Studiengang]</local-name>
+            <parent-name>[Extract]</parent-name>
+            <remote-alias>Studiengang</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <approx-count>13</approx-count>
+            <contains-null>false</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Kontinent</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Kontinent]</local-name>
+            <parent-name>[Extract]</parent-name>
+            <remote-alias>Kontinent</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <approx-count>3</approx-count>
+            <contains-null>false</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Land</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Land]</local-name>
+            <parent-name>[Extract]</parent-name>
+            <remote-alias>Land</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <approx-count>8</approx-count>
+            <contains-null>false</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Stadt</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Stadt]</local-name>
+            <parent-name>[Extract]</parent-name>
+            <remote-alias>Stadt</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <approx-count>11</approx-count>
+            <contains-null>false</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Start</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Start]</local-name>
+            <parent-name>[Extract]</parent-name>
+            <remote-alias>Start</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <approx-count>5</approx-count>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Min.Studiumsdauer (%m)</remote-name>
+            <remote-type>2</remote-type>
+            <local-name>[Min.Studiumsdauer (%m)]</local-name>
+            <parent-name>[Extract]</parent-name>
+            <remote-alias>Min.Studiumsdauer (%m)</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <approx-count>4</approx-count>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Max.Studiumsdauer (%m)</remote-name>
+            <remote-type>2</remote-type>
+            <local-name>[Max.Studiumsdauer (%m)]</local-name>
+            <parent-name>[Extract]</parent-name>
+            <remote-alias>Max.Studiumsdauer (%m)</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <approx-count>2</approx-count>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Abschlusstyp</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Abschlusstyp]</local-name>
+            <parent-name>[Extract]</parent-name>
+            <remote-alias>Abschlusstyp</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <approx-count>2</approx-count>
+            <contains-null>false</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Modus</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Modus]</local-name>
+            <parent-name>[Extract]</parent-name>
+            <remote-alias>Modus</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <approx-count>2</approx-count>
+            <contains-null>false</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Sprache</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Sprache]</local-name>
+            <parent-name>[Extract]</parent-name>
+            <remote-alias>Sprache</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <approx-count>5</approx-count>
+            <contains-null>false</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Unterrichtstyp</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Unterrichtstyp]</local-name>
+            <parent-name>[Extract]</parent-name>
+            <remote-alias>Unterrichtstyp</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <approx-count>2</approx-count>
+            <contains-null>false</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Beschreibung</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Beschreibung]</local-name>
+            <parent-name>[Extract]</parent-name>
+            <remote-alias>Beschreibung</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <approx-count>12</approx-count>
+            <contains-null>false</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Gesamt-Rang</remote-name>
+            <remote-type>2</remote-type>
+            <local-name>[Gesamt-Rang]</local-name>
+            <parent-name>[Extract]</parent-name>
+            <remote-alias>Gesamt-Rang</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <approx-count>6</approx-count>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Aktueller-Rang</remote-name>
+            <remote-type>2</remote-type>
+            <local-name>[Aktueller-Rang]</local-name>
+            <parent-name>[Extract]</parent-name>
+            <remote-alias>Aktueller-Rang</remote-alias>
+            <ordinal>15</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <approx-count>6</approx-count>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Impact-Rang</remote-name>
+            <remote-type>2</remote-type>
+            <local-name>[Impact-Rang]</local-name>
+            <parent-name>[Extract]</parent-name>
+            <remote-alias>Impact-Rang</remote-alias>
+            <ordinal>16</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <approx-count>6</approx-count>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Open-Rang</remote-name>
+            <remote-type>2</remote-type>
+            <local-name>[Open-Rang]</local-name>
+            <parent-name>[Extract]</parent-name>
+            <remote-alias>Open-Rang</remote-alias>
+            <ordinal>17</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <approx-count>6</approx-count>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Excellence-Rang</remote-name>
+            <remote-type>2</remote-type>
+            <local-name>[Excellence-Rang]</local-name>
+            <parent-name>[Extract]</parent-name>
+            <remote-alias>Excellence-Rang</remote-alias>
+            <ordinal>18</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <approx-count>6</approx-count>
+            <contains-null>true</contains-null>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <column aggregation='Sum' datatype='integer' name='[Gesamt-Rang]' role='dimension' type='ordinal' />
+      <column datatype='string' name='[Land]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column datatype='string' name='[Stadt]' role='dimension' semantic-role='[City].[Name]' type='nominal' />
+      <drill-paths>
+        <drill-path name='Land, Stadt'>
+          <field>[Land]</field>
+          <field>[Stadt]</field>
+        </drill-path>
+      </drill-paths>
+      <layout dim-ordering='alphabetic' dim-percentage='0.554935' measure-ordering='alphabetic' measure-percentage='0.445065' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;Schweiz&quot;' />
+      </semantic-values>
+      <date-options start-of-week='monday' />
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Fragestellung 3'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='Extrakt Ausgabe_Veränderung' name='federated.0nky8yw0crj2wd1akr7qw1a1e4av' />
+          </datasources>
+          <datasource-dependencies datasource='federated.0nky8yw0crj2wd1akr7qw1a1e4av'>
+            <column datatype='string' name='[Beschreibung]' role='dimension' type='nominal' />
+            <column aggregation='Sum' datatype='integer' name='[Gesamt-Rang]' role='dimension' type='ordinal' />
+            <column datatype='string' name='[Institution Status]' role='dimension' type='nominal' />
+            <column datatype='string' name='[Institution]' role='dimension' type='nominal' />
+            <column datatype='string' name='[Kontinent]' role='dimension' type='nominal' />
+            <column datatype='string' name='[Land]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+            <column datatype='string' name='[Modus]' role='dimension' type='nominal' />
+            <column datatype='string' name='[Start]' role='dimension' type='nominal' />
+            <column datatype='string' name='[Studiengang]' role='dimension' type='nominal' />
+            <column datatype='string' name='[Unterrichtstyp]' role='dimension' type='nominal' />
+            <column-instance column='[Beschreibung]' derivation='None' name='[none:Beschreibung:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Gesamt-Rang]' derivation='None' name='[none:Gesamt-Rang:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Institution Status]' derivation='None' name='[none:Institution Status:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Institution]' derivation='None' name='[none:Institution:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Kontinent]' derivation='None' name='[none:Kontinent:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Land]' derivation='None' name='[none:Land:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Modus]' derivation='None' name='[none:Modus:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Start]' derivation='None' name='[none:Start:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Studiengang]' derivation='None' name='[none:Studiengang:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Unterrichtstyp]' derivation='None' name='[none:Unterrichtstyp:nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.0nky8yw0crj2wd1akr7qw1a1e4av].[none:Kontinent:nk]'>
+            <groupfilter function='member' level='[none:Kontinent:nk]' member='&quot;Nordamerika&quot;' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.0nky8yw0crj2wd1akr7qw1a1e4av].[none:Kontinent:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='header'>
+            <format attr='width' field='[federated.0nky8yw0crj2wd1akr7qw1a1e4av].[none:Gesamt-Rang:ok]' value='120' />
+            <format attr='width' field='[federated.0nky8yw0crj2wd1akr7qw1a1e4av].[none:Institution Status:nk]' value='132' />
+            <format attr='width' field='[federated.0nky8yw0crj2wd1akr7qw1a1e4av].[none:Unterrichtstyp:nk]' value='116' />
+            <format attr='width' field='[federated.0nky8yw0crj2wd1akr7qw1a1e4av].[none:Start:nk]' value='56' />
+            <format attr='width' field='[federated.0nky8yw0crj2wd1akr7qw1a1e4av].[none:Beschreibung:nk]' value='120' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows>([federated.0nky8yw0crj2wd1akr7qw1a1e4av].[none:Institution Status:nk] / ([federated.0nky8yw0crj2wd1akr7qw1a1e4av].[none:Institution:nk] / ([federated.0nky8yw0crj2wd1akr7qw1a1e4av].[none:Studiengang:nk] / ([federated.0nky8yw0crj2wd1akr7qw1a1e4av].[none:Land:nk] / ([federated.0nky8yw0crj2wd1akr7qw1a1e4av].[none:Start:nk] / ([federated.0nky8yw0crj2wd1akr7qw1a1e4av].[none:Modus:nk] / ([federated.0nky8yw0crj2wd1akr7qw1a1e4av].[none:Unterrichtstyp:nk] / ([federated.0nky8yw0crj2wd1akr7qw1a1e4av].[none:Beschreibung:nk] / [federated.0nky8yw0crj2wd1akr7qw1a1e4av].[none:Gesamt-Rang:ok]))))))))</rows>
+        <cols />
+      </table>
+      <simple-id uuid='{44CE804C-0186-4735-9A35-2B8AE27F4CB3}' />
+    </worksheet>
+  </worksheets>
+  <windows saved-dpi-scale-factor='1.25' source-height='37'>
+    <window class='worksheet' maximized='true' name='Fragestellung 3'>
+      <cards>
+        <edge name='left'>
+          <strip size='177'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.0nky8yw0crj2wd1akr7qw1a1e4av].[none:Abschlusstyp:nk]</field>
+            <field>[federated.0nky8yw0crj2wd1akr7qw1a1e4av].[none:Beschreibung:nk]</field>
+            <field>[federated.0nky8yw0crj2wd1akr7qw1a1e4av].[none:Gesamt-Rang:ok]</field>
+            <field>[federated.0nky8yw0crj2wd1akr7qw1a1e4av].[none:Institution Status:nk]</field>
+            <field>[federated.0nky8yw0crj2wd1akr7qw1a1e4av].[none:Institution:nk]</field>
+            <field>[federated.0nky8yw0crj2wd1akr7qw1a1e4av].[none:Kontinent:nk]</field>
+            <field>[federated.0nky8yw0crj2wd1akr7qw1a1e4av].[none:Land:nk]</field>
+            <field>[federated.0nky8yw0crj2wd1akr7qw1a1e4av].[none:Modus:nk]</field>
+            <field>[federated.0nky8yw0crj2wd1akr7qw1a1e4av].[none:Start:nk]</field>
+            <field>[federated.0nky8yw0crj2wd1akr7qw1a1e4av].[none:Studiengang:nk]</field>
+            <field>[federated.0nky8yw0crj2wd1akr7qw1a1e4av].[none:Unterrichtstyp:nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{8A59C6BD-3D70-4E64-885C-2576EB93E407}' />
+    </window>
+  </windows>
+</workbook>
