@@ -160,13 +160,13 @@ def main():
     items = collect_items('https://www.masterstudies.com/Masters-Degree/Data-Science/')
     data_frame_master = extract_features(items)
     cleanse_data(data_frame_master)
-    export_to_file(data_frame_master, '../data/', 'school_master.csv')
+    export_to_file(data_frame_master, '../Daten/', 'school_master.csv')
 
     # Bachelor
     items = collect_items('https://www.bachelorstudies.com/Bachelor/Data-Science/')
     data_frame_bachelor = extract_features(items)
     cleanse_data(data_frame_bachelor)
-    export_to_file(data_frame_bachelor, '../data/', 'school_bachelor.csv')
+    export_to_file(data_frame_bachelor, '../Daten/', 'school_bachelor.csv')
 
 
 if __name__ == '__main__':

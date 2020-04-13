@@ -98,7 +98,7 @@ def main():
 
     items = collect_items("http://www.webometrics.info/en/world")
     content_data_frame = extract_features(items)
-    export_to_file(content_data_frame, '../data/', 'school_ranking.csv')
+    export_to_file(content_data_frame, '../Daten/', 'school_ranking.csv')
 
 
 if __name__ == '__main__':
